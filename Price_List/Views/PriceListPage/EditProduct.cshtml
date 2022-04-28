@@ -1,0 +1,56 @@
+﻿@model Price_List.Models.Product
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" area-hidden="true">X</button>
+        <h4>Изменение данных</h4>
+    </div>
+    <div class="modal-body">
+        <form action="/PriceListPage/EditProduct" method="post">
+            <div class="form-group-body">
+                <div class="form-group form-group-add">
+                    <div class="form-col row">
+                        <div class="col-md-12 name-col">
+                            <label for="name">Имя</label>
+                            <input type="text" name="name" for="Name" class="form-control" />
+                        </div>
+
+                        @if (Model != null)
+                        {
+                            int count = 0;
+                            for (int i = 0; i < ViewBag.JsonObject.value.Count; i++)
+                            {
+                                <div class="name-col col-md-12">
+
+                                    <label for="ColAdd">@ViewBag.JsonObjectPL.name[i] (@ViewBag.JsonObjectPL.type[i])</label>
+                                    @if (@ViewBag.JsonObjectPL.type[i] == "Число")
+                                    {
+                                        <input type="text" name="ColAdd" for="ColAdd" class="form-control input-data input-number" />
+                                    }
+                                    @if (@ViewBag.JsonObjectPL.type[i] == "Однострочный текст")
+                                    {
+                                        <input type="text" name="ColAdd" for="ColAdd" class="form-control input-data" />
+                                    }
+                                    @if (@ViewBag.JsonObjectPL.type[i] == "Многострочный текст")
+                                    {
+                                        <textarea name="ColAdd" for="ColAdd" class="form-control input-data"></textarea>
+                                    }
+                                </div>
+                                count++;
+                            }
+                        }
+
+                        <div class="col-md-12 name-col">
+                            <input type="text" for="Id" name="Id" value="@ViewBag.ProductId" class="hidden" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Закрыть</button>
+        <button type="button" id="btn_save_add" class="btn btn-primary" data-save="modal">Сохранить</button>
+    </div>
+</div>
+

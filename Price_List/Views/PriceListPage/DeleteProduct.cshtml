@@ -1,0 +1,14 @@
+﻿@model Price_List.Models.Product
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" area-hidden="true">X</button>
+        <h4>Вы уверены?</h4>
+    </div>
+    <div class="modal-body">
+        <button type="button" class="btn btn-primary" del-obj="@Model.Id" action="/PriceListPage/DeleteProduct" 
+                data-del-obj="modal">Удалить</button>
+        <button type="button" id="btn_save_add" class="btn btn-primary" data-dismiss="modal">Отмена</button>
+    </div>
+</div>
+

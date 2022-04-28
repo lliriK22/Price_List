@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Price_List.Models.PriceList>
+
+@{
+    ViewBag.Title = "Price Lists";
+}
+
+<div>
+    <h2>Прайсы</h2>
+</div>
+
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
+
+<div id="PlaceHolder"></div>
+
+<div>
+    <div class="btn-link btn-add-list btn-action">
+        @Html.ActionLink("Добавить", "AddPriceList", null, new { @class = "add_list" })
+    </div>
+
+
+</div>
+
+<div class="row table-body">
+    <div class="col-md-6">
+
+        <div class="form-group" style="width: 100px;margin-top: 25px;">
+            <select class="form-control" name="state" id="maxRows">
+                <option value="5000">Показать все</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="70">70</option>
+                <option value="100">100</option>
+            </select>
+
+        </div>
+
+        <table class="table" id="prices_table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pl in Model)
+                {
+                    <tr>
+                        <td><p>@pl.Id</p></td>
+                        <td>
+                            @Html.ActionLink(@pl.Name, "Index", "PriceListPage", new { id = pl.Id }, null)
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    Опции <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        @Html.ActionLink("Удалить", "DeletePriceList", pl, new { @class = "del_list" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Изменить", "EditPriceList",
+                                       new { id = pl.Id }, new { @class = "edit_list" })
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class='pagination-container'>
+            <nav>
+                <ul class="pagination" style="display: inline-block;">
+
+                    <li data-page="prev">
+                        <span> < <span class="sr-only">(current)</span></span>
+                    </li>
+
+                    <li data-page="next" id="prev">
+                        <span> > <span class="sr-only">(current)</span></span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/MyScripts/modal_window.js")
+    @Scripts.Render("~/Scripts/MyScripts/table_sort_pages.js")
+}
+
+
+
+
+
+

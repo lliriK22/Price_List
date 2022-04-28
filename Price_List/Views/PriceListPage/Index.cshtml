@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Price_List.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div>
+    <h2>@ViewBag.PriceObject.Name</h2>
+</div>
+
+<div class="btn-link btn-add-list btn-action">
+    @Html.ActionLink("Добавить", "AddProduct", new { id = ViewBag.CurrentId }, new { @class = "add_list" })
+</div>
+
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
+
+<div class="row table-body">
+    <div class="col-md-12">
+
+        <div class="form-group" style="width: 100px;margin-top: 25px;">
+            <select class="form-control" name="state" id="maxRows">
+                <option value="5000">Показать все</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="70">70</option>
+                <option value="100">100</option>
+            </select>
+
+        </div>
+
+        <table class="table" id="product_table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    @if (ViewBag.JsonObject != null)
+                    {
+                        foreach (var a in ViewBag.JsonObject.name)
+                        {
+                            <th>@a.ToString()</th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    int count = 0;
+                    foreach (var list in Model)
+                    {
+                        <tr>
+                            <td><p>@list.Id</p></td>
+                            <td><p>@list.Name</p></td>
+                            @if (ViewBag.JsonValues != null)
+                            {
+                                foreach (var a in ViewBag.JsonValues[count].value)
+                                {
+                                    <td>@a.ToString()</td>
+                                }
+                                count++;
+                            }
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        Опции <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            @Html.ActionLink("Удалить", "DeleteProduct", list, new { @class = "del_list" })
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Изменить", "EditProduct",
+                                           new { id = list.Id }, new { @class = "edit_list" })
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        <div class='pagination-container'>
+            <nav>
+                <ul class="pagination">
+
+                    <li data-page="prev">
+                        <span> < <span class="sr-only">(current)</span></span>
+                    </li>
+
+                    <li data-page="next" id="prev">
+                        <span> > <span class="sr-only">(current)</span></span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/MyScripts/modal_window.js")
+    @Scripts.Render("~/Scripts/MyScripts/table_sort_pages.js")
+    @Scripts.Render("~/Scripts/MyScripts/other.js")
+}

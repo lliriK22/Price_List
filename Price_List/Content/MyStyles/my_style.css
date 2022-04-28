@@ -1,0 +1,71 @@
+﻿h2 {
+    margin: 20px 0px;
+    font-size: 20px;
+    text-align: center;
+}
+
+td, th {
+    max-width: 100px;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+
+th:not(:first-child) {
+    cursor: pointer;
+}
+
+th:not(:first-child):hover {
+    color: #006eb8;
+}
+
+.pagination li {
+    cursor: pointer;
+}
+
+.main-header,
+.main-footer {
+    background-color: #006eb8;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    border:none;
+}
+
+.main-header {
+    margin-bottom: 50px;
+}
+
+.main-footer {
+    position:fixed;
+    bottom:0;
+    left:0;
+}
+
+.main-header .header-text, .main-footer .footer-text {
+    color: white;
+    font-size: 15px;
+    text-align: center;
+}
+
+.btn-action a{
+    color: white;
+    background-color: #337ab7;
+    padding: 8px 10px;
+    border-radius: 3px;
+}
+
+.table-body div table{
+    margin-top: 20px;
+}
+
+.modal-content .modal-body form .form-group-add {
+    margin-top: 10px;
+    padding: 10px 0px 20px 10px;
+    box-shadow: 0px 0px 1.5px grey;
+}
+
+.modal-content .modal-body form .form-group-add .del-col button {
+    margin-top: 24px;
+    background-color: indianred;
+    border: none;
+}
