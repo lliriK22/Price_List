@@ -36,13 +36,13 @@
         <table class="table" id="product_table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Название</th>
+                    <th class="sortable">ID</th>
+                    <th class="sortable">Название</th>
                     @if (ViewBag.JsonObject != null)
                     {
                         foreach (var a in ViewBag.JsonObject.name)
                         {
-                            <th>@a.ToString()</th>
+                            <th class="sortable">@a.ToString()</th>
                         }
                     }
                 </tr>
@@ -103,10 +103,3 @@
 
     </div>
 </div>
-
-@section scripts
-{
-    @Scripts.Render("~/Scripts/MyScripts/modal_window.js")
-    @Scripts.Render("~/Scripts/MyScripts/table_sort_pages.js")
-    @Scripts.Render("~/Scripts/MyScripts/other.js")
-}

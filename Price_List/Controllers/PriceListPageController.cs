@@ -12,23 +12,25 @@ namespace Price_List.Controllers
     {
         PriceListContext BD_PL = new PriceListContext();
 
-        public ActionResult Index(int id)
+		public ActionResult Index(int id)
         {
             var pl = BD_PL.PriceLists.ToList().Find(x => x.Id == id);
             var p = BD_PL.Products.ToList().Where(s => s.PriceId == id);
 
-            if(pl != null && pl.ColAdd != null)
+            if(pl != null && pl.ColAdd != "")
             {
+                //JSON объекты - дополнительные колонки, добавленные пользователем (имя колонок и тип)
                 ViewBag.JsonObject = JsonConvert.DeserializeObject<dynamic>(pl.ColAdd);
             }
             
-            if(p != null)
+            if(p != null && pl.ColAdd != "")
             {
                 ViewBag.JsonValues = new List<dynamic>();
 
                 for (int i = 0; i < p.ToList().Count; i++)
                 {
-                    var value = JsonConvert.DeserializeObject<dynamic>(p.ToList()[i].ColAdd);
+					//JSON значения - значения дополнительных колонок, добавленные пользователем
+					var value = JsonConvert.DeserializeObject<dynamic>(p.ToList()[i].ColAdd);
                     ViewBag.JsonValues.Add(value);
                 }
             }
@@ -43,18 +45,19 @@ namespace Price_List.Controllers
         public ActionResult AddProduct(int id)
         {
             Product p = new Product();
+            var jsonObj = JsonConvert.DeserializeObject<dynamic>(BD_PL.PriceLists.ToList().Find(x => x.Id == id).ColAdd);
 
-            ViewBag.JsonObject = JsonConvert.DeserializeObject<dynamic>
-                (BD_PL.PriceLists.ToList().Find(x => x.Id == id).ColAdd);
-
+            if(jsonObj != null)
+                ViewBag.JsonObject = jsonObj;
             ViewBag.PriceId = id;
 
             return PartialView(p);
         }
+
         [HttpPost]
         public ActionResult AddProduct(Product p)
         {
-            if (p != null)
+            if (p != null && p.Name != null)
             {
                 BD_PL.Products.Add(p);
                 BD_PL.SaveChanges();
@@ -67,12 +70,11 @@ namespace Price_List.Controllers
         {
             var p = BD_PL.Products.ToList().FirstOrDefault(x => x.Id == id);
             var pl = BD_PL.PriceLists.ToList().FirstOrDefault(x => x.Id == p.PriceId);
+			var jsonObj = JsonConvert.DeserializeObject<dynamic>(p?.ColAdd);
 
-            ViewBag.JsonObject = JsonConvert.DeserializeObject<dynamic>
-                (BD_PL.Products.ToList().Find(x => x.Id == id).ColAdd);
-
+            if (jsonObj != null)
+                ViewBag.JsonObject = jsonObj;
             ViewBag.JsonObjectPL = JsonConvert.DeserializeObject<dynamic>(pl.ColAdd);
-
             ViewBag.ProductId = id;
 
             if (p != null)
@@ -83,15 +85,15 @@ namespace Price_List.Controllers
         [HttpPost]
         public ActionResult EditProduct(Product p)
         {
-            Product dbEntry = BD_PL.Products.ToList().Find(x=>x.Id == p.Id);
+            var dbEntry = BD_PL.Products.ToList().Find(x=>x.Id == p.Id);
+            var dbPriceList = BD_PL.PriceLists.FirstOrDefault(x => x.Id == dbEntry.PriceId);
 
-            if (dbEntry != null)
+			if (dbEntry != null && dbEntry.Name != null)
             {
                 dbEntry.Name = p.Name;
-                dbEntry.ColAdd = p.ColAdd;
-            }
-
-            BD_PL.SaveChanges();
+				dbEntry.ColAdd = p.ColAdd;
+				BD_PL.SaveChanges();
+			}
 
             return RedirectToAction("Index", new { id = dbEntry.PriceId });
         }

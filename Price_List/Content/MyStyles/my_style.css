@@ -10,11 +10,11 @@ td, th {
     text-align: center;
 }
 
-th:not(:first-child) {
+.sortable {
     cursor: pointer;
 }
 
-th:not(:first-child):hover {
+.sortable:hover {
     color: #006eb8;
 }
 

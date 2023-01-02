@@ -18,13 +18,10 @@
     <div class="btn-link btn-add-list btn-action">
         @Html.ActionLink("Добавить", "AddPriceList", null, new { @class = "add_list" })
     </div>
-
-
 </div>
 
 <div class="row table-body">
-    <div class="col-md-6">
-
+    <div class="col-md-12">
         <div class="form-group" style="width: 100px;margin-top: 25px;">
             <select class="form-control" name="state" id="maxRows">
                 <option value="5000">Показать все</option>
@@ -36,14 +33,13 @@
                 <option value="70">70</option>
                 <option value="100">100</option>
             </select>
-
         </div>
-
         <table class="table" id="prices_table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Название</th>
+                    <th class="sortable">ID</th>
+                    <th class="sortable">Название</th>
+                    <th>Настройка</th>
                 </tr>
             </thead>
             <tbody>
@@ -74,7 +70,6 @@
                 }
             </tbody>
         </table>
-
         <div class='pagination-container'>
             <nav>
                 <ul class="pagination" style="display: inline-block;">
@@ -89,18 +84,6 @@
                 </ul>
             </nav>
         </div>
-
     </div>
 </div>
-
-@section scripts
-{
-    @Scripts.Render("~/Scripts/MyScripts/modal_window.js")
-    @Scripts.Render("~/Scripts/MyScripts/table_sort_pages.js")
-}
-
-
-
-
-
 

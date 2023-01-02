@@ -8,8 +8,6 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/MyStyles/my_style.css")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/Scripts/MyScripts/modal_window.js")
-    @Scripts.Render("~/Scripts/MyScripts/table_sort_pages.js")
 
     <script scr="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
@@ -17,35 +15,21 @@
 <body>
     <div class="main-header navbar navbar-inverse navbar-fixed-top">
         <div class="header-text text">Price Lists</div>
-        <!--<div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Информация", "About", "Home")</li>
-                    <li>@Html.ActionLink("Связаться", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>-->
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer class="main-footer">
             <div class="footer-text text">Тестовое задание</div>
-            <!--<p>&copy; @DateTime.Now.Year - мое приложение ASP.NET</p>-->
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/MyScripts/modal_window.js")
+    @Scripts.Render("~/Scripts/MyScripts/table_sort_pages.js")
+    @Scripts.Render("~/Scripts/MyScripts/other.js")
+    @Scripts.Render("~/Scripts/MyScripts/input_data_processing.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

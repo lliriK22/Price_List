@@ -242,6 +242,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\PriceListContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -251,11 +252,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\PriceList.cs" />
-    <Compile Include="Models\PriceListContext.cs" />
-    <Compile Include="Models\PriceListPageContext.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +280,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\MyScripts\input_data_processing.js" />
     <Content Include="Scripts\MyScripts\modal_window.js" />
     <Content Include="Scripts\MyScripts\other.js" />
     <Content Include="Scripts\MyScripts\table_sort_pages.js" />
@@ -306,9 +306,9 @@
     <Content Include="Views\PriceListPage\AddProduct.cshtml" />
     <Content Include="Views\PriceListPage\EditProduct.cshtml" />
     <Content Include="Views\PriceListPage\DeleteProduct.cshtml" />
+    <Content Include="Views\Shared\IncludeScripts.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>

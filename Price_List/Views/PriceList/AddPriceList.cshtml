@@ -21,26 +21,7 @@
                 <div class="col-md-6"><label>Дополнительные колонки</label></div>
             </div>
             <div class="form-group-body">
-                <div class="form-group form-group-add">
-                    <div class="form-col row">
-                        <div class="name-col col-md-4">
-                            <label for="ColAdd">Имя доп. колонки</label>
-                            <input type="text" name="ColAdd" class="form-control input-data" />
-                        </div>
-                        <div class="type-col col-md-4">
-                            <label for="exampleFormControlSelect2">Тип данных</label>
-                            <select class="form-control form-control-lg select-data">
-                                <option>Число</option>
-                                <option>Однострочный текст</option>
-                                <option>Многострочный текст</option>
-                            </select>
-                        </div>
-                        <div class="del-col col-md-4">
-                            <label for="exampleFormControlSelect2"></label>
-                            <button type="button" class="btn btn-primary" data-del-col="modal">Удалить</button>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <div class="form-btn-add">
                 <button type="button" class="btn btn-primary" data-add="modal">Добавить</button>
@@ -53,8 +34,5 @@
     </div>
 </div>
 
-@section scripts
-{
-    @Scripts.Render("~/Scripts/MyScripts/modal_window.js")
-}
+
 

@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('th').click(function () {
+    $('.sortable').click(function () {
         var table = $(this).parents('table').eq(0);
         var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()));
         this.asc = !this.asc;
@@ -105,8 +105,6 @@
     }
 
     function limitPagging() {
-        // alert($('.pagination li').length)
-
         if ($('.pagination li').length > 7) {
             if ($('.pagination li.active').attr('data-page') <= 3) {
                 $('.pagination li:gt(5)').hide();
@@ -119,12 +117,11 @@
                     $('.pagination [data-page="' + i + '"]').show();
 
                 }
-
             }
         }
     }
 
-    $(function () {
+    /*$(function () {
         $('table tr:eq(0)').prepend('<th>Номер</th>');
 
         var id = 0;
@@ -133,5 +130,5 @@
             id++;
             $(this).prepend('<td>' + id + '</td>');
         });
-    });
+    });*/
 });

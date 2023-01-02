@@ -18,33 +18,35 @@
                 <input type="text" name="Name" class="form-control" />
             </div>
             <div class="form-group-body">
-                <div class="form-group form-group-add">
-                    <div class="form-col row">
-                        @if (Model != null)
-                        {
+                @if (Model != null && ViewBag.JsonObject != null)
+                 {
+                    <div class="form-group form-group-add">
+                        <div class="form-col row">
+                            @{
                             int count = 0;
                             for (int i = 0; i < ViewBag.JsonObject.name.Count; i++)
                             {
-                                <div class="name-col col-md-12">
-                                    <label for="ColAdd">@ViewBag.JsonObject.name[i] (@ViewBag.JsonObject.type[i])</label>
-                                    @if (@ViewBag.JsonObject.type[i] == "Число")
-                                    {
-                                        <input type="text" name="ColAdd" class="form-control input-data input-number" />
-                                    }
-                                    @if (@ViewBag.JsonObject.type[i] == "Однострочный текст")
-                                    {
-                                        <input type="text" name="ColAdd" class="form-control input-data" />
-                                    }
-                                    @if (@ViewBag.JsonObject.type[i] == "Многострочный текст")
-                                    {
-                                        <textarea name="ColAdd" class="form-control input-data"></textarea>
-                                    }
-                                </div>
-                                count++;
+                            <div class="name-col col-md-12">
+                                <label for="ColAdd">@ViewBag.JsonObject.name[i] (@ViewBag.JsonObject.type[i])</label>
+                                @if (@ViewBag.JsonObject.type[i] == "Число")
+                                {
+                                    <input type="text" name="ColAdd" class="form-control input-data input-number" />
+                                }
+                                @if (@ViewBag.JsonObject.type[i] == "Однострочный текст")
+                                {
+                                    <input type="text" name="ColAdd" class="form-control input-data" />
+                                }
+                                @if (@ViewBag.JsonObject.type[i] == "Многострочный текст")
+                                {
+                                    <textarea name="ColAdd" class="form-control input-data"></textarea>
+                                }
+                            </div>
+                            count++;
                             }
-                        }
+                            }
+                        </div>
                     </div>
-                </div>
+                 }
             </div>
                 <div class="hide">
                     <input type="number" name="PriceId" value="@ViewBag.PriceId" />

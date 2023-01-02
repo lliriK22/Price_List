@@ -20,6 +20,8 @@ namespace Price_List
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-        }
+			//Database.SetInitializer<ProductContext>(new DropCreateDatabaseIfModelChanges<ProductContext>());
+			//Database.SetInitializer<PriceListContext>(new DropCreateDatabaseIfModelChanges<PriceListContext>());
+		}
     }
 }

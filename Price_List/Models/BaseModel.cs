@@ -9,13 +9,14 @@ using System.Web.Mvc;
 
 namespace Price_List.Models
 {
-    public class Product : BaseModel
-    {
-		[Column("PriceId")]
-		public int PriceId { get; set; }
+	public class BaseModel
+	{
+		[Column("Id")]
+		public int Id { get; set; }
 
-        [Column("ColAdd")]
-		[DisplayName("Доп. колонка")]
-		public string ColAdd { get; set; } = string.Empty;
-    }
+		[Required]
+		[DisplayName("Имя")]
+		[Column("Name")]
+		public string Name { get; set; }
+	}
 }

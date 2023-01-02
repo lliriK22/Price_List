@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using Price_List.Models;
+using System.Data;
+using System.Web.SessionState;
 
 namespace Price_List.Controllers
 {
@@ -12,7 +14,7 @@ namespace Price_List.Controllers
     {
         PriceListContext BD_PL = new PriceListContext();
 
-        public ActionResult Index()
+		public ActionResult Index()
         {
             var pl = BD_PL.PriceLists;
 
@@ -29,14 +31,14 @@ namespace Price_List.Controllers
         [HttpPost]
         public ActionResult AddPriceList(PriceList pl)
         {
-            if(pl != null)
+            if(pl != null && pl.Name != null)
             {
-                BD_PL.PriceLists.Add(pl);
-                BD_PL.SaveChanges();
-            }
+				BD_PL.PriceLists.Add(pl);
+				BD_PL.SaveChanges();
+			}
 
-            return RedirectToAction("Index");
-        }
+			return RedirectToAction("Index");
+		}
 
         public ActionResult EditPriceList(int id)
         {
@@ -52,12 +54,11 @@ namespace Price_List.Controllers
         {
             PriceList dbEntry = BD_PL.PriceLists.Find(pl.Id);
 
-            if (dbEntry != null)
+            if (dbEntry != null && dbEntry.Name != null)
             {
                 dbEntry.Name = pl.Name;
-            }
-
-            BD_PL.SaveChanges();
+				BD_PL.SaveChanges();
+			}
 
             return RedirectToAction("Index");
         }
@@ -83,7 +84,6 @@ namespace Price_List.Controllers
                 {
                     BD_PL.Products.Remove(p.ToList()[i]);
                 }
-
                 BD_PL.SaveChanges();
             }
 
